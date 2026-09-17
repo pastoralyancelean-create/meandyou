@@ -1,69 +1,129 @@
-// Data for Yance and Sofia
+// ===========================
+// Profile Data
+// ===========================
 const profiles = {
     yance: {
         name: "Yance Lean B. Pastoral",
         age: 19,
         school: "Polytechnic University of the Philippines (PUP)",
-        course: "Bachelor of Science in Information Technology (BSIT)",
+        course: "Bachelor of Science in Information Technology",
         image: "profile1.jpg",
-        background: "Si Yance ay isang 19-year old IT student sa PUP. May malaking interes sa technology, software design, at web development, at may magandang academic background."
+        background: "Yance is a 19-year-old Information Technology student at PUP with a strong passion for technology, software design, and web development. He brings a solid academic background and a keen eye for creating meaningful digital experiences."
     },
     sofia: {
         name: "Sofia Nathalie D. Aguilar",
-        age: 19, // Pwede mong palitan ang age kung kinakailangan
+        age: 19,
         school: "Polytechnic University of the Philippines (PUP)",
-        course: "Bachelor of Secondary Education Major in English (BSED-ENG)",
+        course: "Bachelor of Secondary Education Major in English",
         image: "profile2.jpg",
-        background: "Si Sofia (Pyang) ay nag-aaral sa PUP sa kursong Education Major in English. Mahusay sa larangan ng literatura at komunikasyon, at may impresibong academic record."
+        background: "Sofia is a 19-year-old Education student at PUP, majoring in English. She excels in literature and communication, bringing both academic excellence and a genuine love for language and teaching into everything she does."
     }
 };
 
+// ===========================
 // Modal Elements
-const aboutModal = document.getElementById("aboutModal");
+// ===========================
+const aboutModal  = document.getElementById("aboutModal");
 const detailModal = document.getElementById("detailModal");
-const aboutBtn = document.getElementById("aboutBtn");
+const aboutBtn    = document.getElementById("aboutBtn");
 const detailContent = document.getElementById("detailContent");
 
-// Open About Modal
+// ===========================
+// Navbar "About Us" link
+// ===========================
 aboutBtn.addEventListener("click", (e) => {
     e.preventDefault();
     openAboutModal();
 });
 
+// ===========================
+// About Modal
+// ===========================
 function openAboutModal() {
-    aboutModal.style.display = "flex";
+    aboutModal.classList.remove("closing");
+    aboutModal.classList.add("active");
+    document.body.style.overflow = "hidden";
 }
 
 function closeAboutModal() {
-    aboutModal.style.display = "none";
+    aboutModal.classList.add("closing");
+    setTimeout(() => {
+        aboutModal.classList.remove("active", "closing");
+        document.body.style.overflow = "";
+    }, 380);
 }
 
-// Open Specific Detail Modal
+// ===========================
+// Detail Modal
+// ===========================
 function openDetailModal(person) {
     const data = profiles[person];
+
     detailContent.innerHTML = `
         <img src="${data.image}" alt="${data.name}" class="detail-img">
         <h2>${data.name}</h2>
+        <span class="detail-course-tag">${data.course}</span>
         <div class="info-group">
-            <p><strong>Age:</strong> ${data.age} years old</p>
-            <p><strong>School:</strong> ${data.school}</p>
-            <p><strong>Course/Program:</strong> ${data.course}</p>
-            <p><strong>Background:</strong> ${data.background}</p>
+            <div class="info-item">
+                <span class="info-label">Age</span>
+                <span class="info-value">${data.age} years old</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">University</span>
+                <span class="info-value">${data.school}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Program</span>
+                <span class="info-value">${data.course}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">About</span>
+                <span class="info-value">${data.background}</span>
+            </div>
         </div>
     `;
-    detailModal.style.display = "flex";
+
+    detailModal.classList.remove("closing");
+    detailModal.classList.add("active");
 }
 
 function closeDetailModal() {
-    detailModal.style.display = "none";
+    detailModal.classList.add("closing");
+    setTimeout(() => {
+        detailModal.classList.remove("active", "closing");
+    }, 380);
 }
 
-// Close Modals when clicking outside
-window.onclick = function(event) {
-    if (event.target === aboutModal) {
-        closeAboutModal();
+// ===========================
+// Close on backdrop click
+// ===========================
+[aboutModal, detailModal].forEach(modal => {
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            if (modal === aboutModal) closeAboutModal();
+            else closeDetailModal();
+        }
+    });
+});
+
+// ===========================
+// Close on Escape key
+// ===========================
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        if (detailModal.classList.contains("active")) closeDetailModal();
+        else if (aboutModal.classList.contains("active")) closeAboutModal();
     }
-    if (event.target === detailModal) {
-        closeDetailModal();
+});
+
+// ===========================
+// Navbar scroll effect
+// ===========================
+const navbar = document.querySelector(".navbar");
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 40) {
+        navbar.style.background = "rgba(15, 15, 26, 0.97)";
+    } else {
+        navbar.style.background = "rgba(15, 15, 26, 0.85)";
     }
-};
+});
