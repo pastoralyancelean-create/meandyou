@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yance & Sofia</title>
-    
+    <title>Yance &amp; Sofia</title>
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon1.ico">
-    
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- ===========================
+         Navigation
+         =========================== -->
     <header class="navbar">
-        <div class="logo">Y & S</div>
+        <div class="logo">Y &amp; S</div>
         <nav>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -28,74 +32,87 @@
         </nav>
     </header>
 
-    <!-- Hero / Home Section -->
+    <!-- ===========================
+         Hero Section
+         =========================== -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Yance & Sofia</h1>
+            <h1>Yance &amp; Sofia</h1>
             <p>Two Journeys, One Path at PUP</p>
-            <a href="#about" class="btn" onclick="openAboutModal()">Learn More About Us</a>
+            <a href="#about" class="btn" onclick="openAboutModal(); return false;">Learn More About Us</a>
         </div>
     </section>
 
-    <!-- Photo Gallery Section -->
+    <!-- ===========================
+         Gallery Section
+         =========================== -->
     <section id="gallery" class="gallery-section">
         <h2 class="section-title">Our Moments</h2>
+        <p class="section-subtitle">A glimpse into the memories we share</p>
         <div class="gallery-grid">
             <div class="card">
-                <img src="photo1.jpg" alt="Photo 1" loading="lazy">
+                <img src="photo1.jpg" alt="A shared moment" loading="lazy">
                 <div class="overlay"><span>Moment 01</span></div>
             </div>
             <div class="card">
-                <img src="photo2.jpg" alt="Photo 2" loading="lazy">
+                <img src="photo2.jpg" alt="A shared moment" loading="lazy">
                 <div class="overlay"><span>Moment 02</span></div>
             </div>
             <div class="card">
-                <img src="photo3.jpg" alt="Photo 3" loading="lazy">
+                <img src="photo3.jpg" alt="A shared moment" loading="lazy">
                 <div class="overlay"><span>Moment 03</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Main About Modal (Lalabas pag pinindot ang About) -->
-    <div id="aboutModal" class="modal">
+    <!-- ===========================
+         About Modal
+         =========================== -->
+    <div id="aboutModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
         <div class="modal-content glass-card">
-            <span class="close-btn" onclick="closeAboutModal()">&times;</span>
-            <h2>About Us</h2>
-            <p class="subtitle">Click a profile to view more details</p>
-            
+            <button class="close-btn" onclick="closeAboutModal()" aria-label="Close">&times;</button>
+            <h2 id="aboutModalTitle">About Us</h2>
+            <p class="subtitle">Select a profile to learn more</p>
+
             <div class="profile-cards">
-                <!-- Yance Profile Card -->
-                <div class="profile-card" onclick="openDetailModal('yance')">
+                <!-- Yance -->
+                <div class="profile-card" onclick="openDetailModal('yance')" role="button" tabindex="0"
+                     onkeydown="if(event.key==='Enter')openDetailModal('yance')">
                     <img src="profile1.jpg" alt="Yance Lean B. Pastoral">
                     <h3>Yance Lean B. Pastoral</h3>
-                    <p class="role">IT Student</p>
+                    <p class="role">BS Information Technology</p>
                     <button class="view-btn">View Profile</button>
                 </div>
 
-                <!-- Sofia Profile Card -->
-                <div class="profile-card" onclick="openDetailModal('sofia')">
+                <!-- Sofia -->
+                <div class="profile-card" onclick="openDetailModal('sofia')" role="button" tabindex="0"
+                     onkeydown="if(event.key==='Enter')openDetailModal('sofia')">
                     <img src="profile2.jpg" alt="Sofia Nathalie D. Aguilar">
                     <h3>Sofia Nathalie D. Aguilar</h3>
-                    <p class="role">Educ Major in English</p>
+                    <p class="role">BSED Major in English</p>
                     <button class="view-btn">View Profile</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Individual Profile Detail Modal -->
-    <div id="detailModal" class="modal">
+    <!-- ===========================
+         Detail Modal
+         =========================== -->
+    <div id="detailModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
         <div class="modal-content glass-card detail-box">
-            <span class="close-btn" onclick="closeDetailModal()">&times;</span>
+            <button class="close-btn" onclick="closeDetailModal()" aria-label="Close">&times;</button>
             <div id="detailContent">
-                <!-- Dynamic Content via JavaScript -->
+                <!-- Populated by JavaScript -->
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- ===========================
+         Footer
+         =========================== -->
     <footer>
-        <p>Crafted with ❤️ for Yance & Sofia | PUP Students</p>
+        <p>Crafted with <span>&#9829;</span> for Yance &amp; Sofia &mdash; PUP Students</p>
     </footer>
 
     <script src="script.js"></script>
